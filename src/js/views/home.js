@@ -21,9 +21,34 @@ export const Home = () => {
 				<>
 				<h1>{person.name}</h1>
 				<p>{person.uid}</p>
+				
 				<button onClick= {() => actions.loadPerson(person.uid)}>For more...</button>
 				</>
 			)
 		})}
+
+        {store.vehicles?.map((vehicles)=>{
+
+        return(
+	     <>
+	    <h1>{vehicles.name}</h1>
+	    
+	
+	    
+	    </>
+)
+})}
+
+		{store.planets?.map((planets)=>{
+
+		return(
+		 <>
+		<h1>{planets.name}</h1>
+
+
+
+		</>
+)
+})}
 	</div>)
 };
