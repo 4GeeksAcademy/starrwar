@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { Container, Row, Col } from 'react-bootstrap';
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
@@ -7,8 +8,10 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { NavbarMenu } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Vehicle } from './views/Vehicle';
+import { Character } from './views/Character';
 
 //create your first component
 const Layout = () => {
@@ -17,20 +20,30 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<Container>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<Row>
+						<Col>
+							<NavbarMenu />
+						</Col>
+					</Row>
+					<Row>
+						<Col>
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/character" component= {Character} />
+						<Route path="/vehicle" component= {Vehicle} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
+						</Col>
+					</Row>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
-		</div>
+		</Container>
 	);
 };
 

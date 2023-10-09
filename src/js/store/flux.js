@@ -18,7 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			people:[],
 			vehicles:[],
-			planets:[]
+			planets:[],
+			favorites:[]
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -44,6 +46,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			addFavPerson: (uid, name) => {
+				const store = getStore();
+				const newFav = { "type":"character", "uid":uid, "name":name };
+				const favorites = [...store.favorites, newFav];
+				setStore({ favorites });
+			},
+			addFavVehicle: (uid, name) => {
+				const store = getStore();
+				const newFav = { "type":"vehicle", "uid":uid, "name":name };
+				const favorites = [...store.favorites, newFav];
+				setStore({ favorites });
+			},
+			removeFavPerson: (uid) => {
+				const store = getStore();
+				const filteredFavs = store.favorites.filter(fav => !(fav.type === "person" && fav.uid === uid));
+				setStore({ favorites: filteredFavs });
+			},
+			removeFavVehicle: (uid) => {
+				const store = getStore();
+				const filteredFavs = store.favorites.filter(fav => !(fav.type === "vehicle" && fav.uid === uid));
+				setStore({ favorites: filteredFavs });
+			},
 			loadPeople:() => {
 				console.log("This is load people")
 				fetch("https://www.swapi.tech/api/people/")
@@ -52,9 +76,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(data => setStore({people:data.results}))
 				.catch(err => console.error(err))
 			},
-			loadPerson:(bagodeUva) => {
+			
+			loadPerson:(id) => {
 				console.log()
-				fetch("https://www.swapi.tech/api/people/" + bagodeUva)
+				fetch("https://www.swapi.tech/api/people/" + id)
 				.then(res => res.json())
 				.then(data => console.log(data))
 			},
@@ -63,6 +88,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res => res.json())
 				.then(data => setStore({vehicles:data.results}))
 				.catch(err => console.error(err))
+			},
+			loadVehicle:(id) => {
+				console.log()
+				fetch("https://www.swapi.tech/api/vehicles/" + id)
+				.then(res => res.json())
+				.then(data => console.log(data))
 			},
 			loadPlanets:() => {
 				fetch("https://www.swapi.tech/api/planets/")
