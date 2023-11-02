@@ -32,8 +32,8 @@ const Layout = () => {
 						<Col>
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/character" component= {Character} />
-						<Route path="/vehicle" component= {Vehicle} />
+						<Route path="/Character/:id" element={<Character/>} />
+						<Route path="/Vehicle/:id" element= {<Vehicle/>} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

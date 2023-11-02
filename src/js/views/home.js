@@ -4,7 +4,7 @@ import "../../styles/home.css";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Button from 'react-bootstrap/Button';
+import favoriteToggle from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
@@ -48,14 +48,12 @@ const favoriteToggle = () => {
 				<Card.Title>{person.name}</Card.Title>
 				<Card.Text>
 		  			{person.uid}
-          			{person.gender}
-          			{person.hair_color}
-          			{person.eye_color}
+          			
         		</Card.Text>
-					<Link to="/demo">
+					<Link to= {`character/${person.uid}`}>
 						<button onClick= {() => actions.loadPerson(person.uid)}>Learn More</button>
 					</Link>
-
+					
 					<ToggleButton
                     className="mb-2 mx-2 float-end"
                     width="16"
