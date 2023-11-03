@@ -87,12 +87,10 @@ const favoriteToggle = () => {
 				<Card.Title>{vehicles.name}</Card.Title>
 				<Card.Text>
 		  			{vehicles.uid}
-          			{vehicles.model}
-          			{vehicles.vehicle_class}
-          			{vehicles.manufacturer}
+          			
         		</Card.Text>
-					<Link to="/demo">
-					<button onClick= {() => actions.loadVehicle(vehicles.properties)}>Learn More</button>
+				<Link to= {`vehicle/${vehicles.uid}`}>
+					<button onClick= {() => actions.loadVehicle(vehicles.uid)}>Learn More</button>
 					</Link>
 
 					<ToggleButton

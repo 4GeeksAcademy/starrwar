@@ -90,10 +90,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(err => console.error(err))
 			},
 			loadVehicle:(id) => {
-				console.log()
 				fetch("https://www.swapi.tech/api/vehicles/" + id)
 				.then(res => res.json())
-				.then(data => console.log(data))
+				.then(data => data.result.properties)
 			},
 			loadPlanets:() => {
 				fetch("https://www.swapi.tech/api/planets/")

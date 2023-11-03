@@ -4,9 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router";
 
-
 export const Vehicle = () => {
-    return <h1>Vehicle</h1>;
-
-    
+  return <h1>Vehicle</h1>;
 };

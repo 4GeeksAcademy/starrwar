@@ -32,8 +32,6 @@ export const NavbarMenu = () => {
 			 <img className="card-img-top" src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png" alt="brand" style={{height:100, width:100}} />
 			 </Link>
 			<div className="mr-auto">
-			<Link className= 'nav-link' to="/character">Characters</Link>
-			<Link className= 'nav-link' to="/vehicle">Vehicles</Link>
 			</div>
 		
 			<DropdownButton id="dropdown-favorites" title={`Favorites ${favCounter}`}>

@@ -4,22 +4,37 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router";
 
-
 export const Character = () => {
-    
-    const params = useParams();
+  const params = useParams();
 
-    const title = "Characters"
+  const title = "Characters";
 
-    const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        actions.loadPerson(params.id).then(data => console.log(data))
-    }, [params.id]);
+  const [person, setPerson] = useState(null);
 
-    return <h1>{title}-{params.id}</h1>
-    
-    //passo1: criar UseState para armazenamento de person;
-    //passo2: preencher o usestate com o resultado do loadPerson, substituindo o console.log
-    //passo3: definir o meu html do componente com os dados do usestate
+  useEffect(() => {
+    actions.loadPerson(params.id).then((data) => setPerson(data));
+  }, [params.id]);
+
+  //passo1: criar UseState para armazenamento de person;
+  //passo2: preencher o usestate com o resultado do loadPerson, substituindo o console.log
+  //passo3: definir o meu html do componente com os dados do usestate
+
+  return (
+    <>
+      <h1>{title}</h1>
+      {person ? (
+        <>
+          <h2>{person.name}</h2>
+          <img
+            src={`https://starwars-visualguide.com/assets/img/characters/${params.id}.jpg`}
+          ></img>
+          <h3>Height:{person.height}</h3>
+        </>
+      ) : (
+        <></>
+      )}
+    </>
+  );
 };
