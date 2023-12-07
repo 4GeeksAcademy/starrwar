@@ -1,8 +1,14 @@
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 function CardPeople() {
+  const params = useParams();
     const { store, actions } = useContext(Context);
+    const [person, setPerson] = useState(null);
+
+    
 
 {store.people?.map(person) => {
   return (

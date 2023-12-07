@@ -13,13 +13,16 @@ export const Character = () => {
 
   const [person, setPerson] = useState(null);
 
+  const [character, setCharacter] = useState("")
+
   useEffect(() => {
     actions.loadPerson(params.id).then((data) => setPerson(data));
   }, [params.id]);
 
-  //passo1: criar UseState para armazenamento de person;
-  //passo2: preencher o usestate com o resultado do loadPerson, substituindo o console.log
-  //passo3: definir o meu html do componente com os dados do usestate
+  useEffect(() => {
+    actions.loadCharacter(params.id).then((data) => setCharacter(data));
+  }, [params.id]);
+
 
   return (
     <>
@@ -30,7 +33,13 @@ export const Character = () => {
           <img
             src={`https://starwars-visualguide.com/assets/img/characters/${params.id}.jpg`}
           ></img>
-          <h3>Height:{person.height}</h3>
+          <h4>Height:{person.height}</h4>
+          <h4>Gender:{person.gender}</h4>
+          <h4>Mass:{person.mass}</h4>
+          <h4>Birth Year:{person.birth_year}</h4>
+          <h4>Hair Color:{person.hair_color}</h4>
+          <h4>Eye Color:{person.eye_color}</h4>
+         <h4>Description:{character.description}</h4>
         </>
       ) : (
         <></>
