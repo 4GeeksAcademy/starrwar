@@ -96,7 +96,9 @@ export const Home = (props) => {
                   variant="outline-warning"
                   checked={checked}
                   value="1"
-                  onChange={favoriteToggle}
+                  onChange={() =>
+                    handleAdd("vehicles", vehicles.uid, vehicles.name)
+                  }
                 ></ToggleButton>
               </Card.Body>
             </Card>
