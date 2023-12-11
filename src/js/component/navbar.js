@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router";
 
 export const NavbarMenu = () => {
   const { store, actions } = useContext(Context);
   const [favCounter, setFavCounter] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (store.favorites) {
@@ -46,7 +48,7 @@ export const NavbarMenu = () => {
             return (
               <Dropdown.Item key={index}>
                 <div className="d-flex justify-content-between align-items-center">
-                  <Link to={linkTo}>{fav.name}</Link>
+                <div className="text-primary">{fav.name}</div>
                   <div onClick={(e) => handleDelete(fav.type, fav.uid)}>
                     <FontAwesomeIcon icon="fa-solid fa-trash" />
                   </div>

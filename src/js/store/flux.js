@@ -87,7 +87,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((res) => res.json())
           .then((data) => data.result);
       },
-
+      loadViatura: (id) => {
+        return fetch("https://www.swapi.tech/api/vehicles/" + id)
+          .then((res) => res.json())
+          .then((data) => data.result);
+      },
       loadPerson: (id) => {
         return fetch("https://www.swapi.tech/api/people/" + id)
           .then((res) => res.json())

@@ -23,7 +23,9 @@ export const Home = (props) => {
 
   return (
     <>
+    <div className="text-danger"><h1>Characters</h1></div>
       <div className="card-group card-group-scroll">
+      
         {store.people?.map((person) => {
           const favoriteToggle = () => {
             if (!checked) {
@@ -38,6 +40,7 @@ export const Home = (props) => {
 
           return (
             <>
+            
               <Card style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top holder.js/100px180"
@@ -47,8 +50,8 @@ export const Home = (props) => {
                   <Card.Title>{person.name}</Card.Title>
                   <Card.Text>{person.uid}</Card.Text>
                   <Link to={`character/${person.uid}`}>
-                    <button onClick={() => actions.loadPerson(person.uid)}>
-                      Learn More
+                  <button type="button" class="btn btn-outline-info" onClick={() => actions.loadPerson(person.uid)}>
+                      Learn More!
                     </button>
                   </Link>
 
@@ -65,7 +68,7 @@ export const Home = (props) => {
                       handleAdd("character", person.uid, person.name)
                     }
                   >
-                    <FontAwesomeIcon icon="fa-regular fa-heart" />
+                    <FontAwesomeIcon icon="fa fa-heart" />
                   </ToggleButton>
                 </Card.Body>
               </Card>
@@ -73,10 +76,15 @@ export const Home = (props) => {
           );
         })}
       </div>
+      <p></p>
+      <p></p>
+      <div className="text-danger"><h1>Planets</h1></div>
       <div className="card-group card-group-scroll">
+      
         {store.vehicles?.map((vehicles) => {
           return (
             <>
+              
               <Card style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top holder.js/100px180"
@@ -86,8 +94,8 @@ export const Home = (props) => {
                   <Card.Title>{vehicles.name}</Card.Title>
                   <Card.Text>{vehicles.uid}</Card.Text>
                   <Link to={`vehicle/${vehicles.uid}`}>
-                    <button onClick={() => actions.loadVehicle(vehicles.uid)}>
-                      Learn More
+                    <button type="button" class="btn btn-outline-info" onClick={() => actions.loadVehicle(vehicles.uid)}>
+                      Learn More!
                     </button>
                   </Link>
 
@@ -104,7 +112,7 @@ export const Home = (props) => {
                       handleAdd("vehicles", vehicles.uid, vehicles.name)
                     }
                   >
-                    <FontAwesomeIcon icon="fa-regular fa-heart" />
+                    <FontAwesomeIcon icon="fa fa-heart" />
                   </ToggleButton>
                 </Card.Body>
               </Card>

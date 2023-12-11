@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router";
+import "../../styles/character.css";
+import { Card } from "react-bootstrap";
 
 export const Vehicle = () => {
   const params = useParams();
@@ -13,11 +15,15 @@ export const Vehicle = () => {
 
   const [vehicle, setVehicle] = useState(null);
 
+  const [viatura, setViatura] = useState("")
+
   useEffect(() => {
     actions.loadVehicle(params.id).then((data) => setVehicle(data));
   }, [params.id]);
 
-
+  useEffect(() => {
+    actions.loadViatura(params.id).then((data) => setViatura(data));
+  }, [params.id]);
 
 
 
@@ -29,15 +35,27 @@ export const Vehicle = () => {
       {vehicle ? (
         <>
           <h2>{vehicle.name}</h2>
+          <div className="d-flex justify-content-between">
           <img
             src={`https://starwars-visualguide.com/assets/img/vehicles/${params.id}.jpg`}
           ></img>
-          <h4>Model:{vehicle.model}</h4>
-          <h4>Vehicle Class:{vehicle.vehicle_class}</h4>
-          <h4>Manufacturer:{vehicle.manufacturer}</h4>
-          <h4>Crew:{vehicle.crew}</h4>
-          <h4>Length:{vehicle.length}</h4>
-          <h4>Consumables:{vehicle.consumables}</h4>
+           <Card.Body>
+        <Card.Title><h2>{vehicle.name}</h2></Card.Title>
+        <Card.Text><h4><p className="font-weight-bold">Description:</p>{viatura.description}</h4>
+          </Card.Text>
+          </Card.Body>
+          </div>
+          <hr></hr>
+          <div className="timeline-horizontal">
+          <ol>
+          <li><p className="font-weight-bold">Model:</p>{vehicle.model}</li>
+          <li><p className="font-weight-bold">Vehicle Class:</p>{vehicle.vehicle_class}</li>
+          <li><p className="font-weight-bold">Manufacturer:</p>{vehicle.manufacturer}</li>
+          <li><p className="font-weight-bold">Crew:</p>{vehicle.crew}</li>
+          <li><p className="font-weight-bold">Length:</p>{vehicle.length}</li>
+          <li><p className="font-weight-bold">Consumables:</p>{vehicle.consumables}</li>
+          </ol>
+          </div>
         </>
       ) : (
         <></>
