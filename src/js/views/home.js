@@ -23,7 +23,7 @@ export const Home = (props) => {
 
   return (
     <>
-      <CardGroup>
+      <div className="card-group card-group-scroll">
         {store.people?.map((person) => {
           const favoriteToggle = () => {
             if (!checked) {
@@ -38,7 +38,6 @@ export const Home = (props) => {
 
           return (
             <>
-            
               <Card style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top holder.js/100px180"
@@ -73,48 +72,46 @@ export const Home = (props) => {
             </>
           );
         })}
-      </CardGroup>
-      <CardGroup>
+      </div>
+      <div className="card-group card-group-scroll">
         {store.vehicles?.map((vehicles) => {
           return (
             <>
-              
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img
-                    variant="top holder.js/100px180"
-                    src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
-                  />
-                  <Card.Body>
-                    <Card.Title>{vehicles.name}</Card.Title>
-                    <Card.Text>{vehicles.uid}</Card.Text>
-                    <Link to={`vehicle/${vehicles.uid}`}>
-                      <button onClick={() => actions.loadVehicle(vehicles.uid)}>
-                        Learn More
-                      </button>
-                    </Link>
+              <Card style={{ width: "18rem" }}>
+                <Card.Img
+                  variant="top holder.js/100px180"
+                  src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
+                />
+                <Card.Body>
+                  <Card.Title>{vehicles.name}</Card.Title>
+                  <Card.Text>{vehicles.uid}</Card.Text>
+                  <Link to={`vehicle/${vehicles.uid}`}>
+                    <button onClick={() => actions.loadVehicle(vehicles.uid)}>
+                      Learn More
+                    </button>
+                  </Link>
 
-                    <ToggleButton
-                      className="mb-2 mx-2 float-end"
-                      width="16"
-                      height=""
-                      id={`toggle-check-vehicle-${vehicles.uid}`}
-                      type="checkbox"
-                      variant="outline-warning"
-                      checked={checked}
-                      value="1"
-                      onChange={() =>
-                        handleAdd("vehicles", vehicles.uid, vehicles.name)
-                      }
-                    >
-                      <FontAwesomeIcon icon="fa-regular fa-heart" />
-                    </ToggleButton>
-                  </Card.Body>
-                </Card>
-              
+                  <ToggleButton
+                    className="mb-2 mx-2 float-end"
+                    width="16"
+                    height=""
+                    id={`toggle-check-vehicle-${vehicles.uid}`}
+                    type="checkbox"
+                    variant="outline-warning"
+                    checked={checked}
+                    value="1"
+                    onChange={() =>
+                      handleAdd("vehicles", vehicles.uid, vehicles.name)
+                    }
+                  >
+                    <FontAwesomeIcon icon="fa-regular fa-heart" />
+                  </ToggleButton>
+                </Card.Body>
+              </Card>
             </>
           );
         })}
-      </CardGroup>
+      </div>
     </>
   );
 };
