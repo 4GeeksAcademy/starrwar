@@ -43,12 +43,12 @@ export const NavbarMenu = () => {
           store.favorites.map((fav, index) => {
             const linkTo =
               fav.type === "character"
-                ? `/person/${fav.uid}`
-                : `/vehicles/${fav.uid}`;
+                ? `/character/${fav.uid}`
+                : `/vehicle/${fav.uid}`;
             return (
               <Dropdown.Item key={index}>
                 <div className="d-flex justify-content-between align-items-center">
-                <div className="text-primary">{fav.name}</div>
+                <div className="text-primary"><Link to={linkTo}>{fav.name}</Link></div>
                   <div onClick={(e) => handleDelete(fav.type, fav.uid)}>
                     <FontAwesomeIcon icon="fa-solid fa-trash" />
                   </div>

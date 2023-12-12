@@ -9,6 +9,7 @@ import Card from "react-bootstrap/Card";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CardPeople from "../component/CardPeople";
 
 export const Home = (props) => {
   const { store, actions } = useContext(Context);
@@ -23,9 +24,10 @@ export const Home = (props) => {
 
   return (
     <>
-    <div className="text-danger"><h1>Characters</h1></div>
+      <div className="text-danger">
+        <h1>Characters</h1>
+      </div>
       <div className="card-group card-group-scroll">
-      
         {store.people?.map((person) => {
           const favoriteToggle = () => {
             if (!checked) {
@@ -40,51 +42,20 @@ export const Home = (props) => {
 
           return (
             <>
-            
-              <Card style={{ width: "18rem" }}>
-                <Card.Img
-                  variant="top holder.js/100px180"
-                  src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`}
-                />
-                <Card.Body>
-                  <Card.Title>{person.name}</Card.Title>
-                  <Card.Text>{person.uid}</Card.Text>
-                  <Link to={`character/${person.uid}`}>
-                  <button type="button" class="btn btn-outline-info" onClick={() => actions.loadPerson(person.uid)}>
-                      Learn More!
-                    </button>
-                  </Link>
-
-                  <ToggleButton
-                    className="mb-2 mx-2 float-end"
-                    width="16"
-                    height=""
-                    id={`toggle-check-character-${person.uid}`}
-                    type="checkbox"
-                    variant="outline-warning"
-                    checked={checked}
-                    value="1"
-                    onChange={() =>
-                      handleAdd("character", person.uid, person.name)
-                    }
-                  >
-                    <FontAwesomeIcon icon="fa fa-heart" />
-                  </ToggleButton>
-                </Card.Body>
-              </Card>
+              <CardPeople person={person} handleAdd={handleAdd} />
             </>
           );
         })}
       </div>
       <p></p>
       <p></p>
-      <div className="text-danger"><h1>Planets</h1></div>
+      <div className="text-danger">
+        <h1>Planets</h1>
+      </div>
       <div className="card-group card-group-scroll">
-      
         {store.vehicles?.map((vehicles) => {
           return (
             <>
-              
               <Card style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top holder.js/100px180"
@@ -94,7 +65,11 @@ export const Home = (props) => {
                   <Card.Title>{vehicles.name}</Card.Title>
                   <Card.Text>{vehicles.uid}</Card.Text>
                   <Link to={`vehicle/${vehicles.uid}`}>
-                    <button type="button" class="btn btn-outline-info" onClick={() => actions.loadVehicle(vehicles.uid)}>
+                    <button
+                      type="button"
+                      class="btn btn-outline-info"
+                      onClick={() => actions.loadVehicle(vehicles.uid)}
+                    >
                       Learn More!
                     </button>
                   </Link>
