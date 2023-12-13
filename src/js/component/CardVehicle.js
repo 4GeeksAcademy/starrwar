@@ -7,36 +7,38 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function CardPeople({ person, handleAdd }) {
+
+function CardVehicle({ vehicle, handleAdd }) {
+
   const { store, actions } = useContext(Context);
-  const [personDetails, setPersonDetails] = useState(null);
+  const [vehicleDetails, setVehicleDetails] = useState(null);
   const isFavorite = store.favorites.some(
-    (fav) => fav.type === "person" && fav.uid === person.uid
+    (fav) => fav.type === "vehicle" && fav.uid === vehicle.uid
   );
   const [checked, setChecked] = useState(isFavorite);
+  
 
   useEffect(() => {
-    actions.loadPerson(person.uid).then((data) => setPersonDetails(data));
-  }, [person.uid]);
+    actions.loadVehicle(vehicle.uid).then((data) => setVehicleDetails(data));
+  }, [vehicle.uid]);
+
+  
 
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img
         variant="top holder.js/100px180"
-        src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`}
+        src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`}
       />
       <Card.Body>
-        <Card.Title>{person.name}</Card.Title>
-        <Card.Text>
-        <p className="font-weight-bold">Gender: {personDetails && personDetails.gender}</p>
-        <p className="font-weight-bold">Hair Color: {personDetails && personDetails.hair_color}</p>
-        <p className="font-weight-bold">Eye Color: {personDetails && personDetails.eye_color}</p>
-        </Card.Text>
-        <Link to={`character/${person.uid}`}>
+        <Card.Title>{vehicleDetails && vehicleDetails.name}</Card.Title>
+        <Card.Text>Manufacturer: {vehicleDetails && vehicleDetails.manufacturer}</Card.Text>
+        <Card.Text>Model: {vehicleDetails && vehicleDetails.model}</Card.Text>
+        <Link to={`vehicle/${vehicle.uid}`}>
           <button
             type="button"
             class="btn btn-outline-info"
-            onClick={() => actions.loadPerson(person.uid)}
+            onClick={() => actions.loadVehicle(vehicle.uid)}
           >
             Learn More!
           </button>
@@ -46,12 +48,12 @@ function CardPeople({ person, handleAdd }) {
           className="mb-2 mx-2 float-end"
           width="16"
           height=""
-          id={`toggle-check-character-${person.uid}`}
+          id={`toggle-check-vehicle-${vehicle.uid}`}
           type="checkbox"
           variant="outline-warning"
           checked={checked}
           value="1"
-          onChange={() => handleAdd("character", person.uid, person.name)}
+          onChange={() => handleAdd("vehicles", vehicle.uid, vehicle.name)}
         >
           <FontAwesomeIcon icon="fa fa-heart" />
         </ToggleButton>
@@ -59,4 +61,4 @@ function CardPeople({ person, handleAdd }) {
     </Card>
   );
 }
-export default CardPeople;
+export default CardVehicle;
